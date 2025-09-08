@@ -2,7 +2,7 @@
 
 A modern, responsive, and SEO-optimized web application for reading the Quran online, specifically designed for students in Pakistan. Built with HTML5, CSS3, and JavaScript using the Quran.com API.
 
-## 🌟 Features
+##  Features
 
 ### Core Features
 - **Complete Quran Access**: All 114 Surahs with Arabic text
@@ -21,14 +21,14 @@ A modern, responsive, and SEO-optimized web application for reading the Quran on
 - **SEO Optimized**: Full meta tags and structured data
 - **Accessibility**: Screen reader friendly
 
-## 🎨 Design
+##  Design
 
 - **Color Scheme**: Green (#27AE60), Blue (#3498DB), and White theme
 - **Typography**: Amiri font for Arabic text, modern sans-serif for UI
 - **Layout**: Clean, minimal, and spiritual aesthetic
 - **Components**: Rounded buttons, smooth animations, card-based design
 
-## 🛠️ Technical Stack
+##  Technical Stack
 
 - **Frontend**: HTML5, CSS3 (Tailwind CSS), Vanilla JavaScript
 - **API**: Quran.com API for content, Islamic Network for audio
@@ -36,7 +36,7 @@ A modern, responsive, and SEO-optimized web application for reading the Quran on
 - **Icons**: Font Awesome
 - **Storage**: LocalStorage for bookmarks and preferences
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 quran.login.ac.pk/
@@ -46,14 +46,14 @@ quran.login.ac.pk/
 └── README.md           # Project documentation
 ```
 
-## 🚀 Quick Start
+##  Quick Start
 
 1. **Clone or Download** the project files
 2. **Upload to Web Server** - Place all files in your web root directory
 3. **Open in Browser** - Navigate to `index.html`
 4. **No Build Required** - Ready to use immediately
 
-## 🌐 Deployment
+##  Deployment
 
 ### For XAMPP (Windows)
 1. Copy all files to `C:\xampp\htdocs\quran.login.ac.pk\`
@@ -65,7 +65,7 @@ quran.login.ac.pk/
 - Ensure the domain points to the directory containing the files
 - No database required - uses localStorage for bookmarks
 
-## 📱 Usage
+##  Usage
 
 ### For Students
 1. **Browse Surahs**: Click on any Surah card to start reading
@@ -81,7 +81,7 @@ quran.login.ac.pk/
 - **Search Functionality**: Find verses by content or number
 - **Responsive Design**: Works perfectly on phones, tablets, and desktops
 
-## 🔧 Customization
+##  Customization
 
 ### Colors
 Edit the Tailwind config in `index.html`:
@@ -109,7 +109,7 @@ To add Urdu translation:
 2. Update the translation fetch URL in `script.js`
 3. Add language toggle in the UI
 
-## 📊 SEO Features
+##  SEO Features
 
 - **Meta Tags**: Complete Open Graph and Twitter Card support
 - **Structured Data**: JSON-LD for FAQ and content
@@ -117,28 +117,28 @@ To add Urdu translation:
 - **Mobile SEO**: Mobile-first indexing ready
 - **Accessibility**: WCAG compliant structure
 
-## 🌙 Night Mode
+##  Night Mode
 
 - Automatically saves preference to localStorage
 - Smooth transitions between themes
 - Optimized contrast for comfortable reading
 - Preserves user preference across sessions
 
-## 🔖 Bookmark System
+##  Bookmark System
 
 - **Verse Bookmarks**: Save individual Ayahs
 - **Surah Bookmarks**: Save entire Surahs
 - **Local Storage**: Persists across browser sessions
 - **Visual Indicators**: Clear bookmark status display
 
-## 📱 Mobile Optimization
+##  Mobile Optimization
 
 - **Touch-Friendly**: Large buttons and touch targets
 - **Responsive Layout**: Adapts to all screen sizes
 - **Fast Loading**: Optimized assets and caching
 - **PWA Ready**: Can be installed as a mobile app
 
-## 🤝 Contributing
+##  Contributing
 
 This is an educational project for the benefit of Muslim students worldwide. Contributions are welcome:
 
@@ -147,11 +147,11 @@ This is an educational project for the benefit of Muslim students worldwide. Con
 3. **Code Contributions**: Submit pull requests
 4. **Translations**: Help add more languages
 
-## 📄 License
+##  License
 
 This project is created for educational purposes and is free to use, modify, and distribute for Islamic educational purposes.
 
-## 🙏 Acknowledgments
+##  Acknowledgments
 
 - **Quran.com API**: For providing Quran text and translations
 - **Islamic Network**: For high-quality audio recitations
@@ -159,7 +159,7 @@ This project is created for educational purposes and is free to use, modify, and
 - **Font Awesome**: For beautiful icons
 - **Google Fonts**: For Arabic typography
 
-## 📞 Support
+##  Support
 
 For technical support or questions:
 - Check the FAQ section on the website
@@ -171,3 +171,4 @@ For technical support or questions:
 **Made with ❤️ for Islamic Education in Pakistan**
 
 *May Allah accept this effort and make it beneficial for all Muslim students. Ameen.*
+
