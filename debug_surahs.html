@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Surahs Loading</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .button { background: #3b82f6; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; margin: 10px; }
+        .button:hover { background: #2563eb; }
+        .status { margin: 20px 0; padding: 15px; border-radius: 5px; }
+        .success { background: #dcfce7; border: 1px solid #16a34a; }
+        .error { background: #fef2f2; border: 1px solid #dc2626; }
+        .loading { background: #fef3c7; border: 1px solid #d97706; }
+        #surah-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 15px; margin-top: 20px; }
+        .surah-card { padding: 15px; border: 1px solid #e5e7eb; border-radius: 8px; background: white; }
+    </style>
+</head>
+<body>
+    <h1>🔧 Debug: Surah Loading Test</h1>
+    
+    <div>
+        <button class="button" onclick="testAPIConnectivity()">Test API Connectivity</button>
+        <button class="button" onclick="testOfflineDatabase()">Test Offline Database</button>
+        <button class="button" onclick="testLoadAllSurahs()">Test Load All Surahs</button>
+        <button class="button" onclick="clearResults()">Clear Results</button>
+    </div>
+
+    <div id="status"></div>
+    <div id="surah-grid"></div>
+
+    <script src="script.js"></script>
+    <script>
+        // Simplified version of the Surah loading system for debugging
+        
+        function updateStatus(message, type = 'loading') {
+            const statusDiv = document.getElementById('status');
+            statusDiv.className = `status ${type}`;
+            statusDiv.innerHTML = `<strong>${new Date().toLocaleTimeString()}</strong>: ${message}`;
+            console.log(`[${type.toUpperCase()}] ${message}`);
+        }
+
+        async function testAPIConnectivity() {
+            updateStatus('Testing API connectivity...', 'loading');
+            
+            const apiSources = [
+                'https://api.quran.com/api/v4/chapters?language=en',
+                'https://cdn.jsdelivr.net/gh/risan/quran-json@main/dist/chapters.json'
+            ];
+
+            for (const apiUrl of apiSources) {
+                try {
+                    updateStatus(`Trying: ${apiUrl}`, 'loading');
+                    
+                    const response = await fetch(apiUrl, {
+                        mode: 'cors',
+                        headers: { 'Accept': 'application/json' }
+                    });
+                    
+                    if (response.ok) {
+                        const data = await response.json();
+                        updateStatus(`✅ SUCCESS: ${apiUrl} returned ${JSON.stringify(data).length} characters`, 'success');
+                        console.log('API Response:', data);
+                        return data;
+                    } else {
+                        updateStatus(`❌ HTTP Error ${response.status}: ${apiUrl}`, 'error');
+                    }
+                } catch (error) {
+                    updateStatus(`❌ Network Error: ${apiUrl} - ${error.message}`, 'error');
+                }
+            }
+            
+            updateStatus('❌ All API sources failed', 'error');
+            return null;
+        }
+
+        function testOfflineDatabase() {
+            updateStatus('Testing offline database...', 'loading');
+            
+            try {
+                // Prefer the app's complete offline database (114 Surahs)
+                let allSurahs = null;
+                if (window.app && typeof window.app.getCompleteSurahDatabase === 'function') {
+                    allSurahs = window.app.getCompleteSurahDatabase();
+                } else {
+                    // Fallback to local minimal database if app isn't available
+                    allSurahs = localGetCompleteSurahDatabase();
+                }
+                updateStatus(`✅ Offline database loaded: ${allSurahs.length} Surahs`, 'success');
+                
+                // Display first 10 Surahs for verification
+                const grid = document.getElementById('surah-grid');
+                grid.innerHTML = allSurahs.slice(0, 10).map(surah => `
+                    <div class="surah-card">
+                        <strong>${surah.id}. ${surah.name_arabic}</strong><br>
+                        ${surah.translated_name.name}<br>
+                        <small>${surah.verses_count} verses • ${surah.revelation_place}</small>
+                    </div>
+                `).join('');
+                
+                return allSurahs;
+            } catch (error) {
+                updateStatus(`❌ Offline database failed: ${error.message}`, 'error');
+                return null;
+            }
+        }
+
+        async function testLoadAllSurahs() {
+            updateStatus('Testing complete Surah loading process...', 'loading');
+            
+            try {
+                // First try API
+                let surahs = await testAPIConnectivity();
+                
+                if (surahs) {
+                    // Parse API response
+                    let surahArray = null;
+                    
+                    if (surahs.chapters && Array.isArray(surahs.chapters)) {
+                        surahArray = surahs.chapters;
+                    } else if (Array.isArray(surahs)) {
+                        surahArray = surahs;
+                    } else if (surahs.data && Array.isArray(surahs.data)) {
+                        surahArray = surahs.data;
+                    }
+                    
+                    if (surahArray && surahArray.length >= 100) {
+                        updateStatus(`✅ API Success: ${surahArray.length} Surahs loaded`, 'success');
+                        displaySurahs(surahArray);
+                        return;
+                    } else {
+                        updateStatus(`⚠️ API returned insufficient data: ${surahArray?.length || 0} Surahs`, 'error');
+                    }
+                }
+                
+                // Fallback to offline
+                updateStatus('Falling back to offline database...', 'loading');
+                surahs = testOfflineDatabase();
+                
+                if (surahs) {
+                    updateStatus(`✅ Fallback Success: ${surahs.length} Surahs loaded from offline database`, 'success');
+                } else {
+                    updateStatus('❌ Complete failure: Both API and offline failed', 'error');
+                }
+                
+            } catch (error) {
+                updateStatus(`❌ Critical error: ${error.message}`, 'error');
+            }
+        }
+
+        function displaySurahs(surahs) {
+            const grid = document.getElementById('surah-grid');
+            grid.innerHTML = surahs.slice(0, 20).map(surah => {
+                const name = surah.name_arabic || surah.arabic || `سورة ${surah.id}`;
+                const englishName = surah.translated_name?.name || surah.name || `Surah ${surah.id}`;
+                const verses = surah.verses_count || surah.verses || 'Unknown verses';
+                const place = surah.revelation_place || surah.type || 'Unknown';
+                
+                return `
+                    <div class="surah-card">
+                        <strong>${surah.id}. ${name}</strong><br>
+                        ${englishName}<br>
+                        <small>${verses} verses • ${place}</small>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function clearResults() {
+            document.getElementById('status').innerHTML = '';
+            document.getElementById('surah-grid').innerHTML = '';
+        }
+
+        function localGetCompleteSurahDatabase() {
+            // Minimal local fallback (not full 114). App database is preferred.
+            return [
+                { id: 1, name_arabic: 'الفاتحة', translated_name: { name: 'Al-Fatihah (The Opening)' }, verses_count: 7, revelation_place: 'makkah' },
+                { id: 2, name_arabic: 'البقرة', translated_name: { name: 'Al-Baqarah (The Cow)' }, verses_count: 286, revelation_place: 'madinah' },
+                { id: 3, name_arabic: 'آل عمران', translated_name: { name: 'Ali Imran (Family of Imran)' }, verses_count: 200, revelation_place: 'madinah' },
+                { id: 4, name_arabic: 'النساء', translated_name: { name: 'An-Nisa (The Women)' }, verses_count: 176, revelation_place: 'madinah' },
+                { id: 5, name_arabic: 'المائدة', translated_name: { name: 'Al-Maidah (The Table Spread)' }, verses_count: 120, revelation_place: 'madinah' },
+                { id: 6, name_arabic: 'الأنعام', translated_name: { name: 'Al-Anam (The Cattle)' }, verses_count: 165, revelation_place: 'makkah' },
+                { id: 7, name_arabic: 'الأعراف', translated_name: { name: 'Al-Araf (The Heights)' }, verses_count: 206, revelation_place: 'makkah' },
+                { id: 8, name_arabic: 'الأنفال', translated_name: { name: 'Al-Anfal (The Spoils of War)' }, verses_count: 75, revelation_place: 'madinah' },
+                { id: 9, name_arabic: 'التوبة', translated_name: { name: 'At-Tawbah (The Repentance)' }, verses_count: 129, revelation_place: 'madinah' },
+                { id: 10, name_arabic: 'يونس', translated_name: { name: 'Yunus (Jonah)' }, verses_count: 109, revelation_place: 'makkah' },
+                { id: 11, name_arabic: 'هود', translated_name: { name: 'Hud' }, verses_count: 123, revelation_place: 'makkah' },
+                { id: 12, name_arabic: 'يوسف', translated_name: { name: 'Yusuf (Joseph)' }, verses_count: 111, revelation_place: 'makkah' },
+                { id: 13, name_arabic: 'الرعد', translated_name: { name: 'Ar-Rad (The Thunder)' }, verses_count: 43, revelation_place: 'madinah' },
+                { id: 14, name_arabic: 'إبراهيم', translated_name: { name: 'Ibrahim (Abraham)' }, verses_count: 52, revelation_place: 'makkah' },
+                { id: 15, name_arabic: 'الحجر', translated_name: { name: 'Al-Hijr (The Rocky Tract)' }, verses_count: 99, revelation_place: 'makkah' },
+                // ... Continue for all 114 Surahs (truncated for brevity)
+                { id: 112, name_arabic: 'الإخلاص', translated_name: { name: 'Al-Ikhlas (The Sincerity)' }, verses_count: 4, revelation_place: 'makkah' },
+                { id: 113, name_arabic: 'الفلق', translated_name: { name: 'Al-Falaq (The Daybreak)' }, verses_count: 5, revelation_place: 'makkah' },
+                { id: 114, name_arabic: 'الناس', translated_name: { name: 'An-Nas (Mankind)' }, verses_count: 6, revelation_place: 'makkah' }
+            ];
+        }
+
+        // Auto-run basic test
+        window.onload = function() {
+            updateStatus('Debug page loaded. Click buttons to test individual components.', 'success');
+        };
+    </script>
+</body>
+</html>

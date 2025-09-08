@@ -1,0 +1,49 @@
+# Robots.txt for Quran Online Pakistan
+# https://quran.login.ac.pk/robots.txt
+
+User-agent: *
+Allow: /
+
+# Preferred sitemap location
+Sitemap: https://quran.login.ac.pk/sitemap.xml
+
+# Allow all major search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+# Block any test or development paths (if they exist)
+Disallow: /test/
+Disallow: /dev/
+Disallow: /_test/
+Disallow: /backup/
+
+# Allow access to important resources
+Allow: /styles.css
+Allow: /script.js
+Allow: /favicon.ico
+Allow: /site.webmanifest
+Allow: /*.png
+Allow: /*.jpg
+Allow: /*.jpeg
+Allow: /*.svg
+
+# Crawl delay (polite crawling)
+Crawl-delay: 1
+
+# Host directive
+Host: https://quran.login.ac.pk

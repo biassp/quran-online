@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All 114 Surahs | Quran Online Pakistan</title>
+    <!-- Favicon and Icons -->
+    <link rel="icon" href="favicon_io/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon_io/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="favicon_io/site.webmanifest">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'quran-green': '#10B981',
+                        'quran-blue': '#3B82F6',
+                        'quran-dark': '#1F2937',
+                        'quran-light': '#ECF0F1'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-white text-gray-800 font-sans">
+    <header class="bg-gradient-to-r from-emerald-600 to-blue-600 text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <div class="bg-white bg-opacity-20 p-2 rounded-lg">
+                        <i class="fas fa-book-open text-2xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold leading-tight">Quran Online Pakistan</h1>
+                        <p class="text-xs text-quran-light opacity-90">All 114 Surahs</p>
+                    </div>
+                </div>
+                <nav class="hidden lg:flex space-x-8">
+                    <a href="/" target="_blank" rel="noopener" class="flex items-center space-x-2 hover:text-quran-light transition-colors py-2 px-3 rounded-lg hover:bg-white hover:bg-opacity-10">
+                        <i class="fas fa-home text-sm"></i>
+                        <span>Home</span>
+                    </a>
+                    <a href="surahs.html" target="_blank" rel="noopener" class="flex items-center space-x-2 hover:text-quran-light transition-colors py-2 px-3 rounded-lg hover:bg-white hover:bg-opacity-10 bg-white bg-opacity-20">
+                        <i class="fas fa-book text-sm"></i>
+                        <span>All Surahs</span>
+                    </a>
+                    <a href="about.html" target="_blank" rel="noopener" class="flex items-center space-x-2 hover:text-quran-light transition-colors py-2 px-3 rounded-lg hover:bg-white hover:bg-opacity-10">
+                        <i class="fas fa-info-circle text-sm"></i>
+                        <span>About Quran</span>
+                    </a>
+                    <a href="faq.html" target="_blank" rel="noopener" class="flex items-center space-x-2 hover:text-quran-light transition-colors py-2 px-3 rounded-lg hover:bg-white hover:bg-opacity-10">
+                        <i class="fas fa-question-circle text-sm"></i>
+                        <span>FAQ</span>
+                    </a>
+                    <a href="contact.html" target="_blank" rel="noopener" class="flex items-center space-x-2 hover:text-quran-light transition-colors py-2 px-3 rounded-lg hover:bg-white hover:bg-opacity-10">
+                        <i class="fas fa-envelope text-sm"></i>
+                        <span>Contact</span>
+                    </a>
+                </nav>
+                <div class="flex items-center space-x-3">
+                    <button id="theme-toggle" class="p-2 rounded-lg hover:bg-white hover:bg-opacity-20 transition-colors" title="Toggle dark mode">
+                        <i class="fas fa-moon text-lg"></i>
+                    </button>
+                    <button class="lg:hidden p-2 rounded-lg hover:bg-white hover:bg-opacity-20 transition-colors" id="mobile-menu-btn" title="Open menu">
+                        <i class="fas fa-bars text-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-blue-600 border-t border-white border-opacity-20">
+            <div class="container mx-auto px-4 py-4 space-y-2">
+                <a href="/" target="_blank" rel="noopener" class="flex items-center space-x-3 hover:text-quran-light transition-colors py-3 px-4 rounded-lg hover:bg-white hover:bg-opacity-10">
+                    <i class="fas fa-home text-sm w-5"></i>
+                    <span>Home</span>
+                </a>
+                <a href="surahs.html" target="_blank" rel="noopener" class="flex items-center space-x-3 hover:text-quran-light transition-colors py-3 px-4 rounded-lg hover:bg-white hover:bg-opacity-10 bg-white bg-opacity-20">
+                    <i class="fas fa-book text-sm w-5"></i>
+                    <span>All Surahs</span>
+                </a>
+                <a href="about.html" target="_blank" rel="noopener" class="flex items-center space-x-3 hover:text-quran-light transition-colors py-3 px-4 rounded-lg hover:bg-white hover:bg-opacity-10">
+                    <i class="fas fa-info-circle text-sm w-5"></i>
+                    <span>About Quran</span>
+                </a>
+                <a href="faq.html" target="_blank" rel="noopener" class="flex items-center space-x-3 hover:text-quran-light transition-colors py-3 px-4 rounded-lg hover:bg-white hover:bg-opacity-10">
+                    <i class="fas fa-question-circle text-sm w-5"></i>
+                    <span>FAQ</span>
+                </a>
+                <a href="contact.html" target="_blank" rel="noopener" class="flex items-center space-x-3 hover:text-quran-light transition-colors py-3 px-4 rounded-lg hover:bg-white hover:bg-opacity-10">
+                    <i class="fas fa-envelope text-sm w-5"></i>
+                    <span>Contact</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="py-12">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold text-quran-dark">All 114 Surahs</h2>
+                <p class="text-gray-600">Browse the complete list. Click any Surah to start reading with translations and audio.</p>
+            </div>
+
+            <div id="surah-loading" class="text-center py-8 hidden">
+                <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-quran-green"></div>
+                <p class="mt-2 text-gray-600">Loading Surahs...</p>
+            </div>
+
+            <div id="surah-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+        // Auto-load all surahs on this page
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.app) {
+                app.loadAllSurahs();
+            } else {
+                // Wait briefly for app to initialize
+                const t = setInterval(() => {
+                    if (window.app) {
+                        clearInterval(t);
+                        app.loadAllSurahs();
+                    }
+                }, 100);
+            }
+        });
+
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (mobileMenuBtn && mobileMenu) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
+
+

@@ -1,0 +1,493 @@
+/* Custom Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Noto+Sans+Arabic:wght@100..900&display=swap');
+
+/* Arabic Font for Quran Text */
+.arabic-text {
+    font-family: 'Amiri', serif;
+    font-size: 1.5rem;
+    line-height: 2.5;
+    direction: rtl;
+    text-align: right;
+}
+
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans Arabic', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+}
+
+body.dark-mode .bg-white {
+    background-color: #2d2d2d !important;
+}
+
+body.dark-mode .text-gray-800 {
+    color: #e0e0e0 !important;
+}
+
+body.dark-mode .text-gray-600 {
+    color: #b0b0b0 !important;
+}
+
+body.dark-mode .bg-gradient-to-br.from-quran-light.via-white.to-blue-50 {
+    background: linear-gradient(to bottom right, #3d3d3d, #2d2d2d, #1a1a1a) !important;
+}
+
+/* Header Styles */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* Mobile Menu */
+#mobile-menu {
+    display: none;
+    transition: all 0.3s ease;
+}
+
+#mobile-menu.show {
+    display: block;
+}
+
+/* Hero Section */
+.hero-bg {
+    background: linear-gradient(135deg, #27AE60 0%, #3498DB 100%);
+}
+
+/* Surah Cards */
+.surah-card {
+    transition: all 0.3s ease;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.surah-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.surah-card .card-header {
+    background: linear-gradient(135deg, #27AE60, #2ECC71);
+    color: white;
+    padding: 1rem;
+}
+
+.surah-card .card-body {
+    padding: 1.5rem;
+    background: white;
+}
+
+body.dark-mode .surah-card .card-body {
+    background: #3d3d3d;
+}
+
+/* Audio Player Styles */
+.audio-player {
+    background: #f8f9fa;
+    border-radius: 25px;
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0.5rem 0;
+}
+
+body.dark-mode .audio-player {
+    background: #404040;
+}
+
+.audio-player button {
+    background: none;
+    border: none;
+    color: #27AE60;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+}
+
+.audio-player button:hover {
+    background: rgba(39, 174, 96, 0.1);
+    transform: scale(1.1);
+}
+
+.audio-player .progress-bar {
+    flex: 1;
+    height: 4px;
+    background: #e0e0e0;
+    border-radius: 2px;
+    margin: 0 0.5rem;
+    cursor: pointer;
+}
+
+.audio-player .progress-bar .progress {
+    height: 100%;
+    background: #27AE60;
+    border-radius: 2px;
+    width: 0%;
+    transition: width 0.1s ease;
+}
+
+/* Ayah Styles */
+.ayah-container {
+    border-bottom: 1px solid #e0e0e0;
+    padding: 1.5rem 0;
+    margin-bottom: 1rem;
+}
+
+body.dark-mode .ayah-container {
+    border-bottom-color: #555;
+}
+
+.ayah-number {
+    background: #27AE60;
+    color: white;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin-left: 0.5rem;
+}
+
+.translation-text {
+    color: #666;
+    font-style: italic;
+    margin-top: 0.5rem;
+    line-height: 1.6;
+}
+
+body.dark-mode .translation-text {
+    color: #b0b0b0;
+}
+
+/* Bookmark Button */
+.bookmark-btn {
+    background: none;
+    border: none;
+    color: #666;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+}
+
+.bookmark-btn:hover {
+    color: #27AE60;
+    background: rgba(39, 174, 96, 0.1);
+}
+
+.bookmark-btn.bookmarked {
+    color: #27AE60;
+}
+
+.bookmark-btn.bookmarked i {
+    animation: bookmarkPulse 0.3s ease;
+}
+
+@keyframes bookmarkPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+/* Translation Controls */
+.translation-controls {
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.translation-toggle {
+    transition: all 0.3s ease;
+}
+
+.translation-toggle:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.translation-content {
+    transition: all 0.3s ease;
+}
+
+.translation-content.hidden {
+    display: none;
+}
+
+.translation-content.active {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+/* Search Highlighting */
+mark {
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-weight: 500;
+}
+
+/* Arabic Text Improvements */
+.arabic-text {
+    font-family: 'Amiri', serif;
+    font-size: 1.8rem;
+    line-height: 2.5;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+}
+
+/* Translation Text Styling */
+.translation-text-english p,
+.translation-text-urdu p,
+.translation-text-both p {
+    line-height: 1.7;
+    margin-bottom: 0.5rem;
+}
+
+.translation-text-urdu p {
+    font-family: 'Noto Sans Arabic', 'Amiri', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+/* Dark mode translations */
+body.dark-mode .translation-controls {
+    border-bottom-color: #555;
+}
+
+body.dark-mode .translation-toggle {
+    color: #e0e0e0;
+}
+
+body.dark-mode .translation-toggle:hover {
+    background: rgba(39, 174, 96, 0.2);
+}
+
+/* Search Bar */
+.search-container {
+    position: relative;
+    max-width: 400px;
+    margin: 2rem auto;
+}
+
+.search-input {
+    width: 100%;
+    padding: 1rem 3rem 1rem 1rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 25px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: #27AE60;
+    box-shadow: 0 0 0 3px rgba(39, 174, 96, 0.1);
+}
+
+.search-btn {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #27AE60;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+body.dark-mode .search-input {
+    background: #404040;
+    border-color: #555;
+    color: #e0e0e0;
+}
+
+body.dark-mode .search-input::placeholder {
+    color: #b0b0b0;
+}
+
+/* Loading Spinner */
+.loading-spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #27AE60;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .arabic-text {
+        font-size: 1.4rem;
+        line-height: 2.2;
+        padding: 1rem;
+    }
+
+    .hero h2 {
+        font-size: 2rem;
+        line-height: 1.3;
+    }
+
+    .hero p {
+        font-size: 1.1rem;
+        line-height: 1.5;
+    }
+
+    .audio-player {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .surah-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Mobile navigation improvements */
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    /* Mobile touch targets */
+    .translation-toggle {
+        padding: 0.75rem 1rem;
+        font-size: 0.9rem;
+        margin: 0.25rem;
+    }
+
+    .bookmark-btn {
+        padding: 0.75rem;
+        font-size: 1.4rem;
+    }
+
+    /* Mobile search */
+    .search-input {
+        font-size: 16px; /* Prevents zoom on iOS */
+        padding: 1rem;
+    }
+
+    /* Mobile footer */
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
+
+/* Tablet responsiveness */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .arabic-text {
+        font-size: 1.6rem;
+        line-height: 2.4;
+    }
+
+    .container {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+}
+
+/* Large screen optimization */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1200px;
+    }
+
+    .arabic-text {
+        font-size: 2rem;
+        line-height: 2.6;
+    }
+}
+
+/* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #27AE60;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #229954;
+}
+
+body.dark-mode ::-webkit-scrollbar-track {
+    background: #2d2d2d;
+}
+
+body.dark-mode ::-webkit-scrollbar-thumb {
+    background: #27AE60;
+}
+
+/* Animation Classes */
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.slide-in {
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(0); }
+}
+
+/* Print Styles */
+@media print {
+    body {
+        background: white !important;
+        color: black !important;
+    }
+
+    .no-print {
+        display: none !important;
+    }
+
+    .arabic-text {
+        font-size: 1.2rem;
+        color: black !important;
+    }
+}

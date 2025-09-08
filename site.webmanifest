@@ -1,0 +1,67 @@
+{
+    "name": "Quran Online Pakistan - Free Islamic Education",
+    "short_name": "Quran Online PK",
+    "description": "Free online Quran platform for Pakistani students with translations and recitations",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#27AE60",
+    "orientation": "portrait-primary",
+    "scope": "/",
+    "lang": "en-US",
+    "categories": ["education", "religion", "lifestyle"],
+    "icons": [
+        {
+            "src": "/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "/apple-touch-icon.png",
+            "sizes": "180x180",
+            "type": "image/png"
+        }
+    ],
+    "screenshots": [
+        {
+            "src": "/screenshots/desktop-home.png",
+            "type": "image/png",
+            "sizes": "1280x720",
+            "form_factor": "wide"
+        },
+        {
+            "src": "/screenshots/mobile-surah.png",
+            "type": "image/png",
+            "sizes": "375x667",
+            "form_factor": "narrow"
+        }
+    ],
+    "shortcuts": [
+        {
+            "name": "Read Popular Surahs",
+            "short_name": "Popular",
+            "description": "Access most commonly read Surahs",
+            "url": "/#surahs",
+            "icons": [{ "src": "/favicon-192x192.png", "sizes": "192x192" }]
+        },
+        {
+            "name": "Al-Fatihah",
+            "short_name": "Fatihah",
+            "description": "Read Surah Al-Fatihah",
+            "url": "/?surah=1",
+            "icons": [{ "src": "/favicon-192x192.png", "sizes": "192x192" }]
+        },
+        {
+            "name": "Ya-Sin",
+            "short_name": "Ya-Sin",
+            "description": "Read Surah Ya-Sin",
+            "url": "/?surah=36",
+            "icons": [{ "src": "/favicon-192x192.png", "sizes": "192x192" }]
+        }
+    ]
+}
